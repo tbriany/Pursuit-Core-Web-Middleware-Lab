@@ -3,10 +3,7 @@ const animals = ['dog', 'cat', 'elephant', 'monkey', 'bear', 'tiger', 'lion', 'z
 const isAnimal = (req, res, next) => {
   let request = req.params.animal
   if (animals.includes(request)){
-    res.json({
-     status: "success",
-     message: true
-    })
+    next()
   } else {
     res.json({
       status: "unsuccessful",
@@ -15,6 +12,14 @@ const isAnimal = (req, res, next) => {
   }
 }
 
+const sendResponse = (req, res, next) => {
+  res.json({
+    status: "success",
+    message: true
+   })
+}
+
 module.exports = {
-    isAnimal
+    isAnimal, 
+    sendResponse 
 }

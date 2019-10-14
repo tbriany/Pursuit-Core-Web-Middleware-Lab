@@ -8,20 +8,18 @@ app.use(cors())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
-const isAnimal= require('./animal_module.js').isAnimal
-app.get("/animal/:animal", isAnimal)
+const animal= require('./animal_module.js')
 
-const generateSpread = require('./random_module.js').generateSpread
-app.get("/random", generateSpread)
+app.get("/animal/:animal", animal.isAnimal, animal.sendResponse)
 
-const displayQueue = require('./queue_module').displayQueue
-const handlePeek = require('./queue_module.js').handlePeek
-const handleEnqueue = require('./queue_module.js').handleEnqueue
-const handleDequeue= require('./queue_module.js').handleDequeue
-app.get('/queue', displayQueue)
-app.get('/queue/peek', handlePeek)
-app.get('/queue/enqueue', handleEnqueue)
-app.get('/queue/dequeue', handleDequeue)
+const randomNum = require('./random_module.js')
+app.get("/random", randomNum.generateSpread)
+
+const queue = require('./queue_module')
+app.get('/queue', queue.displayQueue)
+app.get('/queue/peek', queue.handlePeek)
+app.get('/queue/enqueue', queue.handleEnqueue)
+app.get('/queue/dequeue', queue.handleDequeue)
 
 
 app.listen(port, () => {

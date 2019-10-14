@@ -1,4 +1,3 @@
-
 const generateSpread = (req, res, next) => {
    let floor = req.query.floor 
    let ceil = req.query.ceil
