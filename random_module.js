@@ -1,6 +1,6 @@
 const generateSpread = (req, res, next) => {
-   let floor = req.query.floor 
-   let ceil = req.query.ceil
+   let floor = parseInt(req.query.floor)
+   let ceil = parseInt(req.query.ceil)
    let newArr = []
    while (floor <= ceil) {
        newArr.push(floor++)
