@@ -1,3 +1,17 @@
+
+const validNumbers = (req, res, next) => {
+   let floor = parseInt(req.query.floor)
+   let ceil = parseInt(req.query.ceil)
+   if (isNaN(floor) || isNaN(ceil)) {
+      res.json({
+         status: "Error floor or ceil is not a valid number"
+      })
+   } else {
+      next(); 
+   }
+}
+
+
 const generateSpread = (req, res, next) => {
    let floor = parseInt(req.query.floor)
    let ceil = parseInt(req.query.ceil)
@@ -11,12 +25,13 @@ const generateSpread = (req, res, next) => {
    let randomPick = newArr[Math.floor(Math.random() * newArr.length)]
    res.json({
       status:"Success",
-      range: [newArr[0], newArr[newArr.length - 1]],
+      range: [floor, ceil],
       randPick: randomPick
    })
 }
 
 
 module.exports = {
-   generateSpread
+   generateSpread, 
+   validNumbers
 }

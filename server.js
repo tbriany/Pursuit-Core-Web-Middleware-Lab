@@ -13,7 +13,7 @@ const animal= require('./animal_module.js')
 app.get("/animal/:animal", animal.isAnimal, animal.sendResponse)
 
 const randomNum = require('./random_module.js')
-app.get("/random", randomNum.generateSpread)
+app.get("/random", randomNum.validNumbers, randomNum.generateSpread)
 
 const queue = require('./queue_module')
 app.get('/queue', queue.displayQueue)
